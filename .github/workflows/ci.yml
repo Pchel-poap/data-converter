@@ -38,6 +38,10 @@ jobs:
       - name: Test
         run: ctest --test-dir build -C Release --output-on-failure
 
+      - name: Fail Windows intentionally
+        if: runner.os == 'Windows'
+        run: exit 1
+
       - name: Upload Ubuntu artifact
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@v4
